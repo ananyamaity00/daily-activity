@@ -1,0 +1,25 @@
+name: Daily GitHub Commit
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Make a change
+        run: |
+          date >> commit.log
+
+      - name: Commit and push
+        run: |
+          git config --global user.name "ananyamaity00"
+          git config --global user.email "payelmaity056@gmail.com"
+          git add .
+          git commit -m "Daily commit" || echo "Nothing to commit"
+          git push
