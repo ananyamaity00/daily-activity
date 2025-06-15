@@ -5,9 +5,13 @@ on:
     - cron: '0 0 * * *'  # every day at midnight UTC
   workflow_dispatch:
 
+permissions:
+  contents: write  # 🔐 This allows pushing commits to the repo
+
 jobs:
   commit:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
